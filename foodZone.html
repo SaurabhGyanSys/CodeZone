@@ -1,0 +1,26 @@
+<template>
+    <lightning-card>
+        <div class="slds-p-around_medium">
+            <div class="slds-p-around_medium">
+                <lightning-input type="search"
+                onchange={fetchFoodsHandler}
+                label="Search Food"
+                value={query}></lightning-input>
+            </div>
+            <lightning-layout multiple-rows>
+                <template if:true={foods}>
+                    <template for:each={foods.items} for:item="food">
+                        <lightning-layout-item size="3" padding="around-small" key={food.id}>
+                           <div class="slds-box slds-p-around_medium slds-text-align_center">
+                               <img src={food.volumeInfo.imageLinks.smallThumbnail} height="200px"/>
+                               <div class="slds-text-heading_small slds-p-vertical_medium"><strong>{food.volumeInfo.title}</strong></div>
+                               <div><strong>Published Date -</strong>{food.volumeInfo.publishedDate}</div>
+                               <div><strong>Average Rating - {food.volumeInfo.averageRating}</strong></div>
+                           </div>
+                        </lightning-layout-item>
+                    </template>
+                </template>
+            </lightning-layout>
+        </div>
+    </lightning-card>
+</template>
